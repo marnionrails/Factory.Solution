@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h4>Edit machine</h4>
+
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+  @Html.Label("Machine Name")
+  @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required="required"})
+
+  <input type="submit" value="Add" class="btn btn-default" required="true" />
+}
+
+<div class="menu">
+  <ul>
+    <li>@Html.ActionLink("Delete machine","Delete", new {id = Model.MachineId })</li>
+    <li>@Html.ActionLink("Add engineer to this machine","AddEngineer", new {id = Model.MachineId })</li>
+    <li>@Html.ActionLink("Home","Index","Home")</li>
+    <li>@Html.ActionLink("Back to all machines", "Index")</li>
+  </ul>
+</div>
