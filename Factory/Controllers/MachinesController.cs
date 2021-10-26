@@ -19,5 +19,32 @@ namespace Factory.Controllers
       List<Machine> allMachines = _db.Machines.OrderBy(m => m.Name).ToList();
       return View(allMachines);
     }
+
+    [HttpGet]
+    public ActionResult Details(int id)
+    {
+        Machine thisMachine = _db.Machines
+            .Include(m => m.JoinEntities)
+            .ThenInclude(join => join.Engineer)
+            .FirstOrDefault(m => m.MachineId == id);
+        return View(thisMachine);
+    }
+
+    [HttpGet]
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+
+    [HttpPost]
+    public ActionResult Create(Machine machine)
+    {
+        _db.Machines.Add(machine);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+
   }
 }

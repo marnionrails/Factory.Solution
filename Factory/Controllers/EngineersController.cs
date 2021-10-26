@@ -25,10 +25,10 @@ namespace Factory.Controllers
     [HttpGet]
     public ActionResult Details(int id)
     {
-        Engineer thisEngineer = _db.Engineers//this produces a list of patient objects from the database
-            .Include(e => e.JoinEntities)//this loades the join entities property of each patient
-            .ThenInclude(join => join.Machine)//this loads the doctor of each DoctorPatient relationship
-            .FirstOrDefault(e => e.EngineerId == id);//this specifies which patient from the database were working with
+        Engineer thisEngineer = _db.Engineers
+            .Include(e => e.JoinEntities)
+            .ThenInclude(join => join.Machine)
+            .FirstOrDefault(e => e.EngineerId == id);
         return View(thisEngineer);
     }
 

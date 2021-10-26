@@ -46,7 +46,7 @@ li a {
   transition: font-size 0.3s ease, background-color 0.3s ease;
 }
  
-li a:hover {
+.menu li a:hover {
   font-size: 30px;
   background: rgb(3, 122, 151);
   color: white;
