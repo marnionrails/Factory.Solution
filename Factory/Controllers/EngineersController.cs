@@ -18,8 +18,34 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Engineer> model = _db.Engineers.ToList();
-      return View(model);
+      List<Engineer> allEngineers = _db.Engineers.OrderBy(e => e.Name).ToList();
+      return View(allEngineers);
+    }
+
+    [HttpGet]
+    public ActionResult Details(int id)
+    {
+        Engineer thisEngineer = _db.Engineers//this produces a list of patient objects from the database
+            .Include(e => e.JoinEntities)//this loades the join entities property of each patient
+            .ThenInclude(join => join.Machine)//this loads the doctor of each DoctorPatient relationship
+            .FirstOrDefault(e => e.EngineerId == id);//this specifies which patient from the database were working with
+        return View(thisEngineer);
+    }
+
+
+    [HttpGet]
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+
+    [HttpPost]
+    public ActionResult Create(Engineer engineer)
+    {
+        _db.Engineers.Add(engineer);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
   }
 }
