@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h2>Are you sure you want to delete this machine?</h2>
+
+@Html.DisplayFor(model => model.Name)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
+
+<div class="menu">
+  <ul>
+    <li>@Html.ActionLink("Back to machine details","Details", new {id = Model.MachineId })</li>
+    <li>@Html.ActionLink("Home","Index","Home")</li>
+    <li>@Html.ActionLink("Back to all machines", "Index")</li>
+  </ul>
+</div>
