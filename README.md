@@ -50,9 +50,7 @@ This web-based application tracks all the machines and Engineers at a fictional 
   }
 }
 ```
-* Create database in mySQL Workbench using migration with these commands:
-1. `dotnet ef migrations add Initial` 
-2. `dotnet ef database update`
+* Update the database with this command: `$ dotnet ef database update`
 
 ### Run the project
 * Recreate project environment and install required dependencies with terminal command `$ dotnet restore`
