@@ -11,17 +11,17 @@
 <ul>
   @if (@Model.JoinEntities.Count == 0)
   {
-    <li>No machines yet!</li>
+    <p>No machines yet!</p>
   }
   @foreach (var join in Model.JoinEntities)
   {
-    <li>@Html.ActionLink($"{join.Machine.Name}","Details", "Machines", new { id = join.Machine.MachineId} )  
+    <p>@Html.ActionLink($"{join.Machine.Name}","Details", "Machines", new { id = join.Machine.MachineId} )  
       @using (Html.BeginForm("DeleteMachine","Engineers"))
       {
         @Html.Hidden("joinId", @join.EngineerMachineId)
         <input type="submit" value="Delete machine" />
       }
-    </li>
+    </p>
   }
 </ul>
 
