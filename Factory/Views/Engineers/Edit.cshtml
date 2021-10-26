@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<h2>Edit engineer details</h2>
+
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+  @Html.Label("Name")
+  @Html.EditorFor(model => model.Name, new { @class = "form-control", required="required"})
+
+  <input type="submit" value="Save" class="btn btn-default" required="true" />
+}
+
+<div class="menu">
+  <ul>
+    <li>@Html.ActionLink("Delete engineer","Delete", new {id = Model.EngineerId })</li>
+    <li>@Html.ActionLink("Add machine","AddMachine", new {id = Model.EngineerId })</li>
+    <li>@Html.ActionLink("Home","Index","Home")</li>
+    <li>@Html.ActionLink("Back to all engineers", "Index")</li>
+  </ul>
+</div>

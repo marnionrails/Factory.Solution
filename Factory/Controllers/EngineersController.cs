@@ -90,5 +90,18 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = joinEntry.EngineerId});
     }
+
+    public ActionResult Edit(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(e => e.EngineerId == id);
+      return View(thisEngineer);
+    }
+    [HttpPost]
+    public ActionResult Edit(Engineer engineer)
+    {
+      _db.Entry(engineer).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = engineer.EngineerId});
+    }
   }
 }
